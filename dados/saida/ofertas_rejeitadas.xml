@@ -1,0 +1,6 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<rejeitados>
+<oferta><referencia/> <designacao>Adaptador sem referência</designacao> <preco>6,50</preco> <quantidade>15</quantidade> <motivo_rejeicao>Referencia obrigatoria no formato AAA999</motivo_rejeicao></oferta>
+<oferta><referencia>SSD-006</referencia> <designacao>SSD 500 GB</designacao> <preco>-39,90</preco> <quantidade>12</quantidade> <motivo_rejeicao>Preco invalido: usar numero positivo com ate 2 casas decimais</motivo_rejeicao></oferta>
+<oferta><referencia>SUP-007</referencia> <designacao>Suporte para portátil</designacao> <preco>15,00</preco> <quantidade>2,5</quantidade> <motivo_rejeicao>Quantidade deve ser um inteiro entre 0 e 2147483647</motivo_rejeicao></oferta>
+</rejeitados>

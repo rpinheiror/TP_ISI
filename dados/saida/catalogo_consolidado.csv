@@ -1,0 +1,16 @@
+produto_id;fornecedor_id;referencia_normalizada;designacao_normalizada;preco_eur;quantidade_disponivel
+P001;FORN_A;CAB001;Cabo USB-C 1 m;4.50;120
+P005;FORN_A;HUB005;Hub USB 4 portas;8.75;0
+P004;FORN_A;MON004;Monitor 24 polegadas;109.00;8
+P002;FORN_A;RAT002;Rato sem fios;12.90;35
+P003;FORN_A;TEC003;Teclado USB;19.99;18
+P001;FORN_B;CAB101;Cabo USB-C 1 m;4.10;100
+P005;FORN_B;HUB105;Hub USB 4 portas;8.20;40
+P004;FORN_B;MON104;Monitor 24 polegadas;105.00;4
+P002;FORN_B;RAT102;Rato sem fios;11.50;5
+P003;FORN_B;TEC103;Teclado USB;18.50;20
+P001;FORN_C;CAB201;Cabo USB-C 1 m;4.30;50
+P005;FORN_C;HUB205;Hub USB 4 portas;7.90;1
+P004;FORN_C;MON204;Monitor 24 polegadas;107.00;10
+P002;FORN_C;RAT202;Rato sem fios;12.00;30
+P003;FORN_C;TEC203;Teclado USB;17.90;4

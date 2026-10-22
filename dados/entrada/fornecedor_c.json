@@ -1,0 +1,40 @@
+{
+  "ofertas": [
+    {
+      "sku": "CAB-201",
+      "descricao": "Cabo USB-C 1 m",
+      "preco": "4.30",
+      "stock": "50"
+    },
+    {
+      "sku": "RAT-202",
+      "descricao": "Rato sem fios",
+      "preco": "12.00",
+      "stock": "30"
+    },
+    {
+      "sku": "TEC-203",
+      "descricao": "Teclado USB",
+      "preco": "17.90",
+      "stock": "4"
+    },
+    {
+      "sku": "MON-204",
+      "descricao": "Monitor 24 polegadas",
+      "preco": "107.00",
+      "stock": "10"
+    },
+    {
+      "sku": "HUB-205",
+      "descricao": "Hub USB 4 portas",
+      "preco": "7.90",
+      "stock": "1"
+    },
+    {
+      "sku": "CAM-999",
+      "descricao": "Camara web",
+      "preco": "25.00",
+      "stock": "10"
+    }
+  ]
+}

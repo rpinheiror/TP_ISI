@@ -1,0 +1,4 @@
+"produto_id";"designacao";"quantidade_a_Comprar";"fornecedor_id";"referencia_normalizada";"preco_eur";"custo_total_eur"
+"P001";"Cabo USB-C 1 m";16;"FORN_B";"CAB101";4.1;65.6
+"P002";"Rato sem fios";12;"FORN_C";"RAT202";12;144
+"P005";"Hub USB 4 portas";10;"FORN_B";"HUB105";8.2;82

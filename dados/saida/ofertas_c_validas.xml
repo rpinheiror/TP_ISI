@@ -1,0 +1,9 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<catalogo>
+<oferta><fornecedor_id>FORN_C</fornecedor_id> <referencia_normalizada>CAB201</referencia_normalizada> <designacao_normalizada>Cabo USB-C 1 m</designacao_normalizada> <preco_eur>4.30</preco_eur> <quantidade_disponivel>50</quantidade_disponivel></oferta>
+<oferta><fornecedor_id>FORN_C</fornecedor_id> <referencia_normalizada>RAT202</referencia_normalizada> <designacao_normalizada>Rato sem fios</designacao_normalizada> <preco_eur>12.00</preco_eur> <quantidade_disponivel>30</quantidade_disponivel></oferta>
+<oferta><fornecedor_id>FORN_C</fornecedor_id> <referencia_normalizada>TEC203</referencia_normalizada> <designacao_normalizada>Teclado USB</designacao_normalizada> <preco_eur>17.90</preco_eur> <quantidade_disponivel>4</quantidade_disponivel></oferta>
+<oferta><fornecedor_id>FORN_C</fornecedor_id> <referencia_normalizada>MON204</referencia_normalizada> <designacao_normalizada>Monitor 24 polegadas</designacao_normalizada> <preco_eur>107.00</preco_eur> <quantidade_disponivel>10</quantidade_disponivel></oferta>
+<oferta><fornecedor_id>FORN_C</fornecedor_id> <referencia_normalizada>HUB205</referencia_normalizada> <designacao_normalizada>Hub USB 4 portas</designacao_normalizada> <preco_eur>7.90</preco_eur> <quantidade_disponivel>1</quantidade_disponivel></oferta>
+<oferta><fornecedor_id>FORN_C</fornecedor_id> <referencia_normalizada>CAM999</referencia_normalizada> <designacao_normalizada>Camara web</designacao_normalizada> <preco_eur>25.00</preco_eur> <quantidade_disponivel>10</quantidade_disponivel></oferta>
+</catalogo>

@@ -1,0 +1,6 @@
+* text=auto
+*.pdf binary
+*.knwf binary
+*.jar binary
+*.dll binary
+*.mp4 binary

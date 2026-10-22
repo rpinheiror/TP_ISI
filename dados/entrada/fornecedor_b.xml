@@ -1,0 +1,45 @@
+<?xml version='1.0' encoding='utf-8'?>
+<catalogo>
+  <produto>
+    <codigo>cab-101</codigo>
+    <nome>Cabo USB-C 1 m</nome>
+    <valor>4,10</valor>
+    <disponivel>100</disponivel>
+  </produto>
+  <produto>
+    <codigo>RAT-102</codigo>
+    <nome>Rato sem fios</nome>
+    <valor>11,50</valor>
+    <disponivel>5</disponivel>
+  </produto>
+  <produto>
+    <codigo>TEC-103</codigo>
+    <nome>Teclado USB</nome>
+    <valor>18,50</valor>
+    <disponivel>20</disponivel>
+  </produto>
+  <produto>
+    <codigo>MON-104</codigo>
+    <nome>Monitor 24 polegadas</nome>
+    <valor>105,00</valor>
+    <disponivel>4</disponivel>
+  </produto>
+  <produto>
+    <codigo>HUB-105</codigo>
+    <nome>Hub USB 4 portas</nome>
+    <valor>8,20</valor>
+    <disponivel>40</disponivel>
+  </produto>
+  <produto>
+    <codigo>RAT-102</codigo>
+    <nome>Rato sem fios</nome>
+    <valor>11,50</valor>
+    <disponivel>5</disponivel>
+  </produto>
+  <produto>
+    <codigo>SSD-106</codigo>
+    <nome>SSD 500 GB</nome>
+    <valor>gratis</valor>
+    <disponivel>12</disponivel>
+  </produto>
+</catalogo>

@@ -1,0 +1,8 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<catalogo>
+<oferta><fornecedor_id>FORN_A</fornecedor_id> <referencia_normalizada>CAB001</referencia_normalizada> <designacao_normalizada>Cabo USB-C 1 m</designacao_normalizada> <preco_eur>4.50</preco_eur> <quantidade_disponivel>120</quantidade_disponivel></oferta>
+<oferta><fornecedor_id>FORN_A</fornecedor_id> <referencia_normalizada>RAT002</referencia_normalizada> <designacao_normalizada>Rato sem fios</designacao_normalizada> <preco_eur>12.90</preco_eur> <quantidade_disponivel>35</quantidade_disponivel></oferta>
+<oferta><fornecedor_id>FORN_A</fornecedor_id> <referencia_normalizada>TEC003</referencia_normalizada> <designacao_normalizada>Teclado USB</designacao_normalizada> <preco_eur>19.99</preco_eur> <quantidade_disponivel>18</quantidade_disponivel></oferta>
+<oferta><fornecedor_id>FORN_A</fornecedor_id> <referencia_normalizada>MON004</referencia_normalizada> <designacao_normalizada>Monitor 24 polegadas</designacao_normalizada> <preco_eur>109.00</preco_eur> <quantidade_disponivel>8</quantidade_disponivel></oferta>
+<oferta><fornecedor_id>FORN_A</fornecedor_id> <referencia_normalizada>HUB005</referencia_normalizada> <designacao_normalizada>Hub USB 4 portas</designacao_normalizada> <preco_eur>8.75</preco_eur> <quantidade_disponivel>0</quantidade_disponivel></oferta>
+</catalogo>

@@ -1,0 +1,4 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<rejeitados>
+<oferta><referencia>SSD-106</referencia> <designacao>SSD 500 GB</designacao> <preco>gratis</preco> <quantidade>12</quantidade> <motivo_rejeicao>Preco invalido: usar numero positivo com ate 2 casas decimais</motivo_rejeicao></oferta>
+</rejeitados>

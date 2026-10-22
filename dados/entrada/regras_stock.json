@@ -1,0 +1,29 @@
+{
+  "regras": [
+    {
+      "produto_id": "P001",
+      "stock_minimo": 10,
+      "stock_alvo": 20
+    },
+    {
+      "produto_id": "P002",
+      "stock_minimo": 8,
+      "stock_alvo": 15
+    },
+    {
+      "produto_id": "P003",
+      "stock_minimo": 10,
+      "stock_alvo": 20
+    },
+    {
+      "produto_id": "P004",
+      "stock_minimo": 2,
+      "stock_alvo": 12
+    },
+    {
+      "produto_id": "P005",
+      "stock_minimo": 3,
+      "stock_alvo": 10
+    }
+  ]
+}

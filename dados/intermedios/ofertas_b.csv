@@ -1,0 +1,7 @@
+fornecedor_id;referencia_normalizada;designacao_normalizada;preco_eur;quantidade_disponivel
+FORN_B;CAB101;Cabo USB-C 1 m;4,10;100
+FORN_B;RAT102;Rato sem fios;11,50;5
+FORN_B;TEC103;Teclado USB;18,50;20
+FORN_B;MON104;Monitor 24 polegadas;105,00;4
+FORN_B;HUB105;Hub USB 4 portas;8,20;40
+FORN_B;RAT102;Rato sem fios;11,50;5
