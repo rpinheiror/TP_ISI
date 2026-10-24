@@ -1,95 +1,106 @@
-# Integração de catálogos de fornecedores e reposição de stock
+# Supplier Catalog Integration & Stock Replenishment
 
-Trabalho Prático I de **Integração de Sistemas de Informação**, Licenciatura em Engenharia de Sistemas Informáticos, IPCA, 2026/2027.
+An ETL and decision-support project that combines **Pentaho Kettle**, **SQL Server**, and **KNIME** to turn heterogeneous supplier catalogs into stock replenishment proposals.
 
-| Autor | Número | Plataforma explorada |
-|---|---|---|
-| Pedro Filipe Martins Andrade | 31497 | Pentaho Kettle e integração com SQL Server |
-| Rodrigo Henrique Silva Pinheiro | 31502 | KNIME |
+Developed for Information Systems Integration, Computer Systems Engineering, 2026/2027.
 
-**[Vídeo de demonstração](https://github.com/rpinheiror/TP_ISI/blob/main/video/31497_31502_demonstracao.mp4)** · **[Relatório](doc/31497_31502_doc.pdf)** · **[Repositório](https://github.com/rpinheiror/TP_ISI)**
+[Watch the demo](video/31497_31502_demonstracao.mp4) · [Read the project report](doc/31497_31502_doc.pdf)
 
-O vídeo tem 4 min 40 s. Se o GitHub não apresentar o leitor, selecionar **View raw** ou **Download raw file** para abrir ou descarregar o MP4. A ligação e o QR Code constam também da secção 6 do relatório.
+The demo lasts 4 minutes 40 seconds. If GitHub does not display a player, use **View raw** or **Download raw file**. The report also includes the video link and QR code in section 6. The original report and project identifiers are in Portuguese.
 
-## Problema e solução
+## Problem and approach
 
-Uma loja de material informático recebe catálogos de três fornecedores em CSV, XML e JSON. As referências dos artigos diferem entre fornecedores e existem valores inválidos e uma oferta duplicada. É necessário uniformizar estes dados antes de os comparar com o stock e com as regras de reposição da loja.
+A computer equipment store receives catalogs from three suppliers in CSV, XML, and JSON. Supplier product references differ, and the inputs include invalid values and a duplicate offer.
 
-O Kettle normaliza e valida os catálogos, conserva os rejeitados com o respetivo motivo e associa as ofertas aos produtos internos através de um mapa de correspondências. O catálogo consolidado é inserido ou atualizado no SQL Server. O KNIME consulta a base de dados, identifica os produtos abaixo do stock mínimo e calcula a quantidade necessária para atingir o stock alvo. Para cada produto, escolhe a oferta mais barata que permita satisfazer a quantidade total requerida.
+1. **Kettle** normalizes and validates the catalogs, retains rejected records with their reasons, and maps supplier references to internal products.
+2. **SQL Server** stores the consolidated catalog, inserting new offers and updating existing ones.
+3. **KNIME** reads the catalog, stock levels, and replenishment rules. It identifies products below minimum stock and selects the cheapest offer capable of fulfilling the entire required quantity.
+
 
 ```text
-Catálogos CSV, XML e JSON → Kettle → SQL Server → KNIME → Resultados CSV
-                                                  ↑
-                                        Stock CSV e regras JSON
+CSV / XML / JSON → Kettle → SQL Server → KNIME → CSV proposals
+                                         ↑
+                              Stock CSV + rules JSON
 ```
 
-Os dados são fictícios. O processo produz propostas de compra; não efetua encomendas. A necessidade de um produto não é repartida por vários fornecedores.
+The data is fictional. The workflow generates purchase proposals; it does not place orders. A product's requirement is not split across suppliers. Offers are identified by supplier and reference; missing offers in later catalogs are not deleted automatically.
 
-## Organização dos ficheiros
+## Technologies
 
-| Pasta | Conteúdo |
-|---|---|
-| `doc/` | Relatório final em PDF, com ligação e QR Code para o vídeo. |
-| `dataintegration/` | Cinco transformações Kettle (`.ktr`) e o job integrado (`.kjb`). Os scripts de normalização estão nos próprios passos das transformações. |
-| `knime/` | Pacote importável `Reposicao_Stock.knwf`, com o workflow e as suas entradas CSV/JSON. |
-| `dados/entrada/` | Catálogos dos fornecedores, mapa de produtos, stock e regras de reposição. |
-| `dados/intermedios/` | Exemplos das ofertas normalizadas por fornecedor; são substituídos pelo job. |
-| `dados/saida/` | Exemplos do catálogo consolidado e dos XML de válidos e rejeitados; `knime/` contém os cinco CSV de resultados. |
-| `sqlserver/` | Script de criação da base, tabelas e view; consultas para conferência. |
-| `drivers/` | Driver JDBC Microsoft 13.6.0, biblioteca de autenticação Windows x64 e licença. |
-| `video/` | Demonstração em MP4 e créditos da música. |
+Pentaho Data Integration / Kettle · Microsoft SQL Server · KNIME · JDBC · CSV · XML · JSON
 
-## Requisitos
+## Repository structure
 
-- Windows x64, para reproduzir a configuração de autenticação utilizada.
-- Pentaho Data Integration / Spoon **10.2.0.0-222**, com o Java compatível com essa instalação.
-- SQL Server **2019 ou posterior** e SQL Server Management Studio.
-- KNIME Analytics Platform **5.12.0**, com as extensões de bases de dados, Microsoft SQL Server, processamento JSON e o nó Math Formula. Ao importar, instalar as extensões em falta que o KNIME indicar.
-- Conta Windows com autorização para criar a base e ler e escrever os dados no SQL Server local.
+| Path | Contents |
+| --- | --- |
+| `doc/` | Final PDF report |
+| `dataintegration/` | Five Kettle transformations (.ktr) and the integrated job (.kjb); normalization scripts are embedded in the transformation steps |
+| `knime/` | Importable Reposicao_Stock.knwf package, including CSV/JSON inputs |
+| `dados/entrada/` | Supplier catalogs, product mapping, stock, and replenishment rules |
+| `dados/intermedios/` | Sample normalized supplier offers, overwritten by the job |
+| `dados/saida/` | Consolidated catalog and valid/rejected XML samples; knime/ contains five output CSV files |
+| `sqlserver/` | Database, table, and view creation script; verification queries |
+| `drivers/` | Microsoft JDBC 13.6.0 driver, Windows x64 authentication library, and license |
+| `video/` | MP4 demonstration and music credits |
 
-## Execução noutro computador
+## Requirements
 
-Descompactar a entrega ou clonar este repositório, mantendo a estrutura das pastas. Não executar os ficheiros diretamente dentro do ZIP.
+- Windows x64 to reproduce the supplied authentication setup.
+- Pentaho Data Integration / Spoon **10.2.0.0-222**, with a compatible Java installation.
+- SQL Server **2019 or later**, plus SQL Server Management Studio.
+- KNIME Analytics Platform **5.12.0**, with database, Microsoft SQL Server, JSON processing, and Math Formula extensions. Install missing extensions when prompted during import.
+- A Windows account allowed to create the database and read/write data on the local SQL Server instance.
 
-### 1. Preparar o SQL Server
+Clone or extract the repository while preserving its directory structure. Do not run the files from inside a ZIP archive.
 
-1. Iniciar o serviço da instância SQL Server e ligar através do Management Studio com **Windows Authentication**.
-2. Executar `sqlserver/01_criar_base_e_tabelas.sql`. O script cria a base `TP1_FornecedoresStock`, as tabelas `Fornecedores`, `Produtos` e `Ofertas`, os dados de referência e a view `dbo.vw_CatalogoKNIME`. Não apaga uma base existente.
-3. No SQL Server Configuration Manager, confirmar que o protocolo **TCP/IP** está ativo na instância e que esta escuta na porta **1433**. Se for necessário definir a porta, usar `IPAll → TCP Port = 1433`, sem porta dinâmica, e reiniciar o serviço. A configuração do projeto usa o servidor local; não requer acesso remoto entre os computadores dos autores.
+## Setup and execution
 
-### 2. Executar o Kettle
+### 1. Prepare SQL Server
 
-1. Com o Spoon fechado, copiar `drivers/mssql-jdbc-13.6.0.jre8.jar` para a pasta `lib` da instalação do Pentaho Data Integration. Evitar manter versões diferentes do mesmo driver nessa pasta. Copiar `drivers/mssql-jdbc_auth-13.6.0.x64.dll` para `libswt/win64` da mesma instalação.
-2. Abrir o Spoon e o ficheiro `dataintegration/00_executar_integracao_sqlserver.kjb`.
-3. Premir **F9**, escolher execução local e confirmar os parâmetros `SQL_HOST=localhost`, `SQL_PORT=1433` e `SQL_DATABASE=TP1_FornecedoresStock`. Se a instância tiver outra porta ou localização, adaptar estes parâmetros e, posteriormente, o conector do KNIME.
-4. Executar o job e confirmar o estado **Success**. As cinco transformações importam A, B e C, consolidam o catálogo e carregam o SQL Server. As entradas e saídas usam caminhos relativos às transformações.
-5. Executar `sqlserver/03_consultas_demonstracao.sql` no Management Studio. Para os dados fornecidos, a base deve conter **3 fornecedores, 5 produtos e 15 ofertas**.
+1. Start the SQL Server instance and connect through Management Studio using **Windows Authentication**.
+2. Run `sqlserver/01_criar_base_e_tabelas.sql`. It creates `TP1_FornecedoresStock`, the `Fornecedores`, `Produtos`, and `Ofertas` tables, reference data, and `dbo.vw_CatalogoKNIME`. It does not delete an existing database.
+3. In SQL Server Configuration Manager, verify that **TCP/IP** is enabled and the local instance listens on port **1433**. If needed, set **IPAll → TCP Port = 1433**, remove the dynamic port, and restart the service. The supplied setup uses a local server and does not require remote access between the authors' computers.
 
-A carga identifica cada oferta pelo fornecedor e pela referência: insere novas ofertas e atualiza as existentes, sem duplicar essa chave. Não elimina ofertas ausentes de um catálogo posterior.
+### 2. Run Kettle
 
-### 3. Executar o KNIME
+1. With Spoon closed, copy `drivers/mssql-jdbc-13.6.0.jre8.jar` into the Pentaho installation's `lib` directory. Avoid keeping different versions of the same driver there. Copy `drivers/mssql-jdbc_auth-13.6.0.x64.dll` into `libswt/win64`.
+2. Open Spoon and load `dataintegration/00_executar_integracao_sqlserver.kjb`.
+3. Press **F9**, select local execution, and confirm `SQL_HOST=localhost`, `SQL_PORT=1433`, and `SQL_DATABASE=TP1_FornecedoresStock`. Adjust these values and the KNIME connector if your instance differs.
+4. Run the job and verify **Success**. Its five transformations import suppliers A, B, and C, consolidate the catalog, and load SQL Server. Input/output paths are relative to the transformations.
+5. Run `sqlserver/03_consultas_demonstracao.sql` in Management Studio. The supplied data should produce **3 suppliers, 5 products, and 15 offers**.
 
-1. Importar `knime/Reposicao_Stock.knwf` através de **File → Import KNIME Workflow** ou da opção **Import workflow** da página inicial. Selecionar o pacote e concluir a importação para o workspace local.
-2. Registar o driver em **File → Preferences → KNIME → Databases → Add**: ID `sqlserver_tp1`, tipo **Microsoft SQL Server**, classe `com.microsoft.sqlserver.jdbc.SQLServerDriver`. Adicionar o JAR fornecido e, através de **Add directory**, a pasta `drivers`, que contém a DLL de autenticação. Reiniciar o KNIME se for necessário carregar a biblioteca nativa.
-3. Abrir o nó **Microsoft SQL Server Connector** e confirmar o driver `sqlserver_tp1`, servidor `localhost`, porta `1433` e base `TP1_FornecedoresStock`. A ligação utiliza a conta Windows, sem utilizador ou palavra-passe SQL, e as propriedades JDBC `integratedSecurity=true`, `encrypt=true` e `trustServerCertificate=true`. Esta última destina-se ao certificado da instância local de demonstração.
-4. Os leitores de stock e regras usam `data/input` dentro do workflow importado. Os escritores usam `data/output` no mesmo workflow. Estes caminhos são relativos e não dependem das pastas dos autores. As entradas incluídas no pacote correspondem às amostras em `dados/entrada`.
-5. Selecionar **Reset** no workflow e depois **Execute all**. Esta sequência recalcula os resultados, mesmo que existam tabelas guardadas. Confirmar a execução dos **31 nós**. Os escritores substituem os CSV anteriores.
-6. Consultar a pasta `data/output` do workflow importado ou as tabelas dos nós finais. Os exemplos incluídos na entrega estão em `dados/saida/knime`.
+### 3. Run KNIME
 
-## Resultados esperados
+1. Import `knime/Reposicao_Stock.knwf` through **File → Import KNIME Workflow** or the home page's **Import workflow** option into your local workspace.
+2. Register the driver through **File → Preferences → KNIME → Databases → Add**: ID `sqlserver_tp1`, type **Microsoft SQL Server**, class `com.microsoft.sqlserver.jdbc.SQLServerDriver`. Add the supplied JAR and use **Add directory** to include the `drivers` directory containing the authentication DLL. Restart KNIME if needed to load the native library.
+3. In **Microsoft SQL Server Connector**, select that driver, server `localhost`, port `1433`, and database `TP1_FornecedoresStock`. The supplied connection uses Windows authentication without a SQL username/password, with `integratedSecurity=true`, `encrypt=true`, and `trustServerCertificate=true`. The last setting is for the local demonstration instance's certificate.
+4. Stock and rule readers use `data/input` inside the imported workflow; writers use `data/output`. These relative paths do not depend on the authors' directories. Included inputs match `dados/entrada`.
+5. Select **Reset**, then **Execute all**, to recalculate even if saved tables exist. Confirm that all **31 nodes** execute. Writers overwrite previous CSV outputs.
+6. Inspect the workflow's `data/output` directory or the final node tables. Reference outputs are provided in `dados/saida/knime`.
 
-| Ficheiro KNIME | Resultado |
-|---|---|
-| `regras_invalidas.csv` | 0 registos inválidos. |
-| `produtos_a_repor.csv` | 4 produtos abaixo do stock mínimo. |
-| `propostas_compra.csv` | 3 propostas, 38 unidades e custo total de **291,60 €**. |
-| `produtos_sem_fornecedor.csv` | 1 exceção: monitor P004, sem oferta individual suficiente para as 12 unidades necessárias. |
-| `resumo_fornecedores.csv` | FORN_B: 26 unidades e 147,60 €; FORN_C: 12 unidades e 144,00 €. |
+## Expected results
 
-No caso do rato P002, o fornecedor B tem o menor preço, mas só dispõe de 5 unidades. Como são necessárias 12, é escolhido C, a 12,00 € por unidade. O exemplo demonstra a aplicação da restrição de disponibilidade antes da comparação de preços.
+These are the documented reference results for the supplied sample data.
 
-## Música do vídeo
+| Output file | Expected result |
+| --- | --- |
+| `regras_invalidas.csv` | 0 invalid rules |
+| `produtos_a_repor.csv` | 4 products below minimum stock |
+| `propostas_compra.csv` | 3 proposals, 38 units, total cost **€291.60** |
+| `produtos_sem_fornecedor.csv` | 1 exception: monitor P004, with no single offer able to provide the 12 required units |
+| `resumo_fornecedores.csv` | FORN_B: 26 units / €147.60; FORN_C: 12 units / €144.00 |
 
-**Jazz Brunch** — Kevin MacLeod (incompetech.com). Licensed under Creative Commons: By Attribution 4.0.
+For mouse P002, supplier B has the lowest price but only 5 units available. Since 12 are required, supplier C is selected at €12.00 per unit. This demonstrates availability filtering before price comparison.
 
-[Licença CC BY 4.0](https://creativecommons.org/licenses/by/4.0/) · [Fonte oficial da música](https://incompetech.com/music/royalty-free/index.html?isrc=USUAN1700074) · [Distribuição oficial do driver JDBC](https://github.com/microsoft/mssql-jdbc/releases/tag/v13.6.0).
+## Authors and responsibilities
+
+| Author | Student no. | Main contribution |
+| --- | --- | --- |
+| Pedro Filipe Martins Andrade | 31497 | Pentaho Kettle and SQL Server integration |
+| Rodrigo Henrique Silva Pinheiro | 31502 | KNIME |
+
+## Third-party credits
+
+**Video music:** Jazz Brunch — Kevin MacLeod (incompetech.com), licensed under [Creative Commons Attribution 4.0](https://creativecommons.org/licenses/by/4.0/). [Official track source](https://incompetech.com/music/royalty-free/index.html?isrc=USUAN1700074).
+
+**JDBC driver:** [Official Microsoft JDBC 13.6.0 distribution](https://github.com/microsoft/mssql-jdbc/releases/tag/v13.6.0). The driver license is included in `drivers/`.
